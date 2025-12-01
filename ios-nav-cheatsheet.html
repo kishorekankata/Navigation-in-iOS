@@ -41,7 +41,7 @@
     
     .grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: 1fr;
       gap: 15px;
     }
     
@@ -89,17 +89,42 @@
       color: #424245;
     }
     
+    .visual-container {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      align-items: center;
+      margin: 10px 0;
+    }
+    
     .visual-box {
       background: white;
       border: 1px solid #e5e5e5;
       border-radius: 8px;
       padding: 10px;
-      margin: 10px 0;
+      text-align: center;
+      width: 100%;
+    }
+    
+    .gif-box {
+      background: white;
+      border: 2px solid #0071e3;
+      border-radius: 12px;
+      padding: 6px;
       text-align: center;
     }
     
-    .visual-box img {
-      max-width: 100%;
+    .gif-box img {
+      width: 270px;
+      height: auto;
+      border-radius: 8px;
+    }
+    
+    .gif-label {
+      font-size: 8px;
+      color: #0071e3;
+      font-weight: 600;
+      margin-top: 4px;
     }
     
     .flow-diagram {
@@ -187,7 +212,6 @@
     
     /* Decision Matrix */
     .decision-matrix {
-      grid-column: span 2;
       margin-top: 5px;
     }
     
@@ -247,6 +271,7 @@
       body { padding: 10px; }
       .card { break-inside: avoid; }
       .grid { gap: 10px; }
+      .gif-box img { width: 100px; }
     }
   </style>
 </head>
@@ -269,13 +294,19 @@
       <div class="card-content">
         <p>Users navigate by making one choice per screen, drilling deeper into content. Back button returns to previous screen.</p>
         
-        <div class="visual-box">
-          <div class="flow-diagram">
-            <div class="flow-box">Inbox</div>
-            <span class="flow-arrow">→</span>
-            <div class="flow-box">Email</div>
-            <span class="flow-arrow">→</span>
-            <div class="flow-box">Attachment</div>
+        <div class="visual-container">
+          <div class="visual-box">
+            <div class="flow-diagram">
+              <div class="flow-box">Inbox</div>
+              <span class="flow-arrow">→</span>
+              <div class="flow-box">Email</div>
+              <span class="flow-arrow">→</span>
+              <div class="flow-box">Attachment</div>
+            </div>
+          </div>
+          <div class="gif-box">
+            <img src="https://raw.githubusercontent.com/kishorekankata/Navigation-in-iOS/main/Demo/Stack%20or%20Hierarchical%20Navigation.gif" alt="Hierarchical Navigation Demo">
+            <div class="gif-label">Live Demo</div>
           </div>
         </div>
         
@@ -302,11 +333,17 @@
       <div class="card-content">
         <p>Temporary screen that appears on top, blocking interaction with content behind until dismissed. Used for focused tasks.</p>
         
-        <div class="visual-box">
-          <div class="flow-diagram">
-            <div class="flow-box">Main Screen</div>
-            <span class="flow-arrow">↑</span>
-            <div class="flow-box" style="border: 2px solid #7b1fa2;">Modal Task</div>
+        <div class="visual-container">
+          <div class="visual-box">
+            <div class="flow-diagram">
+              <div class="flow-box">Main Screen</div>
+              <span class="flow-arrow">↑</span>
+              <div class="flow-box" style="border: 2px solid #7b1fa2;">Modal Task</div>
+            </div>
+          </div>
+          <div class="gif-box">
+            <img src="https://raw.githubusercontent.com/kishorekankata/Navigation-in-iOS/main/Demo/Modal%20or%20overlay.gif" alt="Modal Presentation Demo">
+            <div class="gif-label">Live Demo</div>
           </div>
         </div>
         
@@ -318,10 +355,6 @@
         <div class="dont-use">
           <strong>✗ Avoid:</strong>
           • Stacking modals on modals • Simple information display • Frequent interruptions
-        </div>
-        
-        <div class="examples">
-          <strong>Apple Examples:</strong> Compose email, Add calendar event, Share sheet
         </div>
       </div>
     </div>
@@ -338,14 +371,20 @@
       <div class="card-content">
         <p>Critical messages that appear center-screen and require user acknowledgment before continuing. Use sparingly!</p>
         
-        <div class="visual-box">
-          <div style="border: 2px solid #c62828; border-radius: 12px; padding: 10px; display: inline-block;">
-            <div style="font-weight: 600; margin-bottom: 4px;">Delete Photo?</div>
-            <div style="font-size: 9px; color: #666; margin-bottom: 8px;">This cannot be undone.</div>
-            <div style="display: flex; gap: 8px; justify-content: center;">
-              <span class="flow-box" style="background: #ffebee; color: #c62828;">Delete</span>
-              <span class="flow-box" style="background: #e3f2fd; color: #1976d2;">Cancel</span>
+        <div class="visual-container">
+          <div class="visual-box">
+            <div style="border: 2px solid #c62828; border-radius: 12px; padding: 10px; display: inline-block;">
+              <div style="font-weight: 600; margin-bottom: 4px;">Delete Photo?</div>
+              <div style="font-size: 9px; color: #666; margin-bottom: 8px;">This cannot be undone.</div>
+              <div style="display: flex; gap: 8px; justify-content: center;">
+                <span class="flow-box" style="background: #ffebee; color: #c62828;">Delete</span>
+                <span class="flow-box" style="background: #e3f2fd; color: #1976d2;">Cancel</span>
+              </div>
             </div>
+          </div>
+          <div class="gif-box">
+            <img src="https://raw.githubusercontent.com/kishorekankata/Navigation-in-iOS/main/Demo/Alerts.gif" alt="Alerts Demo">
+            <div class="gif-label">Live Demo</div>
           </div>
         </div>
         
@@ -373,12 +412,18 @@
       <div class="card-content">
         <p>Menu of options that slides up from bottom (iPhone) or appears as popover (iPad). Always includes Cancel option.</p>
         
-        <div class="visual-box">
-          <div style="text-align: left; display: inline-block;">
-            <div class="flow-box" style="margin-bottom: 4px; display: block;">Share</div>
-            <div class="flow-box" style="margin-bottom: 4px; display: block;">Duplicate</div>
-            <div class="flow-box" style="margin-bottom: 4px; display: block; background: #ffebee; color: #c62828;">Delete</div>
-            <div class="flow-box" style="display: block; background: #e3f2fd; color: #1976d2;">Cancel</div>
+        <div class="visual-container">
+          <div class="visual-box">
+            <div style="text-align: left; display: inline-block;">
+              <div class="flow-box" style="margin-bottom: 4px; display: block;">Share</div>
+              <div class="flow-box" style="margin-bottom: 4px; display: block;">Duplicate</div>
+              <div class="flow-box" style="margin-bottom: 4px; display: block; background: #ffebee; color: #c62828;">Delete</div>
+              <div class="flow-box" style="display: block; background: #e3f2fd; color: #1976d2;">Cancel</div>
+            </div>
+          </div>
+          <div class="gif-box">
+            <img src="https://raw.githubusercontent.com/kishorekankata/Navigation-in-iOS/main/Demo/Confirmation%20dialogs.gif" alt="Confirmation Dialog Demo">
+            <div class="gif-label">Live Demo</div>
           </div>
         </div>
         
@@ -405,13 +450,18 @@
       <div class="card-content">
         <p>Small view that appears near a specific element with an arrow pointing to its source. Best suited for iPad; adapts to sheet on iPhone.</p>
         
-        <div class="visual-box">
-          <div style="position: relative; display: inline-block;">
-            <div class="flow-box" style="margin-bottom: 8px;">Button</div>
-            <div style="border: 1px solid #2e7d32; border-radius: 8px; padding: 8px; font-size: 9px; background: white;">
-              <div style="width: 0; height: 0; border-left: 6px solid transparent; border-right: 6px solid transparent; border-bottom: 6px solid #2e7d32; position: absolute; top: 28px; left: 50%; transform: translateX(-50%);"></div>
-              Contextual information<br>or quick actions
+        <div class="visual-container">
+          <div class="visual-box">
+            <div style="position: relative; display: inline-block;">
+              <div class="flow-box" style="margin-bottom: 8px;">Button</div>
+              <div style="border: 1px solid #2e7d32; border-radius: 8px; padding: 8px; font-size: 9px; background: white;">
+                Contextual information<br>or quick actions
+              </div>
             </div>
+          </div>
+          <div class="gif-box">
+            <img src="https://raw.githubusercontent.com/kishorekankata/Navigation-in-iOS/main/Demo/Popovers.gif" alt="Popover Demo">
+            <div class="gif-label">Live Demo</div>
           </div>
         </div>
         
@@ -439,24 +489,30 @@
       <div class="card-content">
         <p>Flat navigation between top-level app sections. Always visible at bottom. Each tab maintains its own navigation state.</p>
         
-        <div class="visual-box">
-          <div class="flow-diagram" style="gap: 12px;">
-            <div style="text-align: center;">
-              <div style="font-size: 16px;">🏠</div>
-              <div style="font-size: 8px; color: #00838f; font-weight: 600;">Home</div>
+        <div class="visual-container">
+          <div class="visual-box">
+            <div class="flow-diagram" style="gap: 12px;">
+              <div style="text-align: center;">
+                <div style="font-size: 16px;">🏠</div>
+                <div style="font-size: 8px; color: #00838f; font-weight: 600;">Home</div>
+              </div>
+              <div style="text-align: center;">
+                <div style="font-size: 16px;">🔍</div>
+                <div style="font-size: 8px;">Search</div>
+              </div>
+              <div style="text-align: center;">
+                <div style="font-size: 16px;">🔔</div>
+                <div style="font-size: 8px;">Alerts</div>
+              </div>
+              <div style="text-align: center;">
+                <div style="font-size: 16px;">👤</div>
+                <div style="font-size: 8px;">Profile</div>
+              </div>
             </div>
-            <div style="text-align: center;">
-              <div style="font-size: 16px;">🔍</div>
-              <div style="font-size: 8px;">Search</div>
-            </div>
-            <div style="text-align: center;">
-              <div style="font-size: 16px;">🔔</div>
-              <div style="font-size: 8px;">Alerts</div>
-            </div>
-            <div style="text-align: center;">
-              <div style="font-size: 16px;">👤</div>
-              <div style="font-size: 8px;">Profile</div>
-            </div>
+          </div>
+          <div class="gif-box">
+            <img src="https://raw.githubusercontent.com/kishorekankata/Navigation-in-iOS/main/Demo/Tab%20bars.gif" alt="Tab Bar Demo">
+            <div class="gif-label">Live Demo</div>
           </div>
         </div>
         
@@ -484,20 +540,26 @@
       <div class="card-content">
         <p>Sheets that can stop at multiple heights. Users drag to resize. Content behind remains partially visible and sometimes interactive.</p>
         
-        <div class="visual-box">
-          <div style="display: flex; gap: 15px; justify-content: center; align-items: flex-end;">
-            <div style="text-align: center;">
-              <div style="width: 40px; height: 30px; background: #ede7f6; border: 1px solid #5e35b1; border-radius: 6px 6px 0 0;"></div>
-              <div style="font-size: 8px; margin-top: 4px;">Small</div>
+        <div class="visual-container">
+          <div class="visual-box">
+            <div style="display: flex; gap: 15px; justify-content: center; align-items: flex-end;">
+              <div style="text-align: center;">
+                <div style="width: 40px; height: 30px; background: #ede7f6; border: 1px solid #5e35b1; border-radius: 6px 6px 0 0;"></div>
+                <div style="font-size: 8px; margin-top: 4px;">Small</div>
+              </div>
+              <div style="text-align: center;">
+                <div style="width: 40px; height: 50px; background: #ede7f6; border: 1px solid #5e35b1; border-radius: 6px 6px 0 0;"></div>
+                <div style="font-size: 8px; margin-top: 4px;">Medium</div>
+              </div>
+              <div style="text-align: center;">
+                <div style="width: 40px; height: 70px; background: #ede7f6; border: 1px solid #5e35b1; border-radius: 6px 6px 0 0;"></div>
+                <div style="font-size: 8px; margin-top: 4px;">Large</div>
+              </div>
             </div>
-            <div style="text-align: center;">
-              <div style="width: 40px; height: 50px; background: #ede7f6; border: 1px solid #5e35b1; border-radius: 6px 6px 0 0;"></div>
-              <div style="font-size: 8px; margin-top: 4px;">Medium</div>
-            </div>
-            <div style="text-align: center;">
-              <div style="width: 40px; height: 70px; background: #ede7f6; border: 1px solid #5e35b1; border-radius: 6px 6px 0 0;"></div>
-              <div style="font-size: 8px; margin-top: 4px;">Large</div>
-            </div>
+          </div>
+          <div class="gif-box">
+            <img src="https://raw.githubusercontent.com/kishorekankata/Navigation-in-iOS/main/Demo/Sheets%20with%20Detents.gif" alt="Sheet Detents Demo">
+            <div class="gif-label">Live Demo</div>
           </div>
         </div>
         
